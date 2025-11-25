@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Revista · Portafolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background: #ffffff;
+            color: #111;
+        }
+        header {
+            padding: 60px 30px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+        .hero-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        .section-title {
+            margin-top: 60px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #000;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 25px;
+        }
+        .article-card {
+            padding: 25px;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            transition: 0.25s ease;
+            cursor: pointer;
+        }
+        .article-card:hover {
+            border-color: #111;
+            transform: translateY(-3px);
+        }
+        .article-card h3 {
+            font-size: 1.3rem;
+            margin: 0;
+            font-weight: 600;
+        }
+        .article-card p {
+            margin: 6px 0 0;
+            color: #555;
+        }
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mi Revista</h1>
+        <p>Artículos, ideas, reflexiones y críticas · Un espacio personal</p>
+        <img src="FOTO_PRINCIPAL.jpg" class="hero-img" alt="Imagen principal" />
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Categorías</h2>
+        <ul>
+            <li>Filosofía</li>
+            <li>Sociedad</li>
+            <li>Cultura</li>
+            <li>Opinión</li>
+        </ul>
+
+        <h2 class="section-title">Últimos artículos</h2>
+        <div class="article-list">
+            <div class="article-card">
+                <h3>Título del Artículo</h3>
+                <p>Descripción corta del artículo. Este resumen se puede personalizar.</p>
+            </div>
+            <div class="article-card">
+                <h3>Otro Artículo Interesante</h3>
+                <p>Una breve frase que introduce el ambiente del artículo.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2025 · Mi Revista · Todos los derechos reservados
+    </footer>
+</body>
+</html>
