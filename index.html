@@ -24,13 +24,11 @@
   .title h1{font-family:Playfair Display,serif;margin:0;font-size:1.25rem;letter-spacing:0.01em}
   .title p{margin:0;color:var(--muted);font-size:0.9rem}
 
-  /* navegación de categorías */
   nav{max-width:var(--maxw);margin:18px auto;padding:0 20px}
   .cats{display:flex;gap:12px;flex-wrap:wrap}
   .cat{padding:8px 12px;border-radius:999px;border:1px solid #eee;font-size:0.9rem;color:var(--muted);cursor:pointer}
   .cat.active{border-color:var(--accent);color:var(--accent);font-weight:600}
 
-  /* layout principal */
   main{max-width:var(--maxw);margin:24px auto;padding:0 20px;display:grid;grid-template-columns:1fr 320px;gap:34px}
 
   /* columna de artículos: revista grid */
@@ -43,7 +41,6 @@
   .card h3{margin:10px 0 6px;font-size:1.05rem}
   .excerpt{color:var(--muted);font-size:0.95rem}
 
-  /* columna derecha: destacados y menú tipo archivo */
   aside{position:relative}
   .featured{background:#f9f9f9;border-radius:12px;padding:14px;border:1px solid #eee}
   .featured h4{margin:6px 0 12px}
@@ -55,19 +52,16 @@
   .bycat{display:flex;flex-direction:column;gap:8px}
   .bycat a{padding:8px;border-radius:8px;border:1px solid #f0f0f0}
 
-  /* featured large */
   .hero{display:grid;grid-template-columns:1fr;gap:18px;margin:0 0 18px}
   .hero .big{height:420px;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;border:1px solid #eee}
   .overlay{padding:22px;background:linear-gradient(180deg,transparent 60%, rgba(0,0,0,0.45));color:#fff;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
   .overlay h2{margin:0;font-size:2rem;font-family:Playfair Display,serif}
 
-  /* article moods: cada card puede tener una clase que modifique colores */
   .mood-raw .thumb{filter:grayscale(10%) sepia(8%)}
   .mood-satiric .thumb{filter:hue-rotate(-10deg) saturate(1.25)}
   .mood-nocturne .thumb{filter:brightness(.7) contrast(1.05)}
   .mood-ethereal .thumb{filter:contrast(.95) saturate(.7) blur(0.2px)}
 
-  /* responsive */
   @media (max-width:980px){main{grid-template-columns:1fr} .grid{grid-template-columns:1fr} aside{order:2}}
 </style>
 </head>
@@ -76,18 +70,18 @@
   <div class="brand">
     <div class="logo">M</div>
     <div class="title">
-      <h1><!--NOMBRE_SITIO--></h1>
-      <p><!--SUBTITULO: espacio para ensayos, criticas y absurdo--></p>
+      <h1>  ></h1>
+      <p> </p>
     </div>
   </div>
   <div class="actions">
-    <!-- espacio para buscar, redes, suscripcion -->
+
   </div>
 </header>
 
 <nav>
   <div class="cats" id="cats">
-    <!-- categorías se generan en JS -->
+
   </div>
 </nav>
 
@@ -103,7 +97,7 @@
     </div>
 
     <div class="grid" id="grid">
-      <!-- tarjetas de artículos (ejemplos) -->
+  
 
       <article class="card mood-nocturne" data-cats="filosofia,ensayos">
         <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1526318472351-c75fcf0709c2?auto=format&fit=crop&w=1200&q=60')"></div>
@@ -141,7 +135,7 @@
         </div>
       </article>
 
-      <!-- más tarjetas: el sistema permite agregar muchas más -->
+   
     </div>
   </section>
 
@@ -167,13 +161,13 @@
     <div class="menu-sect">
       <h5>Explorar por categoría</h5>
       <div class="bycat" id="bycat">
-        <!-- listado de categorias -->
+       
       </div>
     </div>
   </aside>
 </main>
 
-<footer style="max-width:var(--maxw);margin:40px auto;padding:20px">© <!--AÑO--> · <!--NOMBRE_SITIO--> · Todos los derechos reservados</footer>
+<footer style="max-width:var(--maxw);margin:40px auto;padding:20px">©  · Todos los derechos reservados</footer>
 
 <script>
   const CATS = ["filosofia","critica social","politica","cultura","opinion","ensayos","relatos","cine","musica","arte","moda","emergente","criticas","temas absurdos","satira"];
@@ -196,25 +190,13 @@
       const cats = card.dataset.cats.split(',').map(x=>x.trim());
       if(cats.includes(cat)) card.style.display='flex'; else card.style.display='none';
     })
-    // si no hay resultados, mostrar todos
     const any = Array.from(document.querySelectorAll('#grid article')).some(a=>a.style.display!=='none');
     if(!any) document.querySelectorAll('#grid article').forEach(a=>a.style.display='flex');
   }
 
-  // ejemplo: marcar la primera categoría como activa
   document.querySelectorAll('.cat')[0].classList.add('active');
 
 </script>
-
-<!--
-  INSTRUCCIONES RÁPIDAS para añadir artículos personales:
-  - Copia una tarjeta <article class="card mood-..." data-cats="categoria1,categoria2"> ... </article>
-  - Modifica el estilo inline de .thumb con una URL propia.
-  - Cambia kicker, h3 y excerpt.
-  - Para crear páginas individuales: crea 'articulos/nombre-archivo.html' con tu contenido y enlázalo poniendo <a href="/articulos/nombre-archivo.html"> dentro de la tarjeta.
-  - Puedes crear diferentes "mood-": mood-nocturne, mood-ethereal, mood-satiric, mood-raw
-  - El hero usa la imagen subida: /mnt/data/76edcc88-f92e-4ca4-8347-1c6469113d97.png (reemplaza por tus fotos)
--->
 
 </body>
 </html>
