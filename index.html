@@ -1,114 +1,220 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mi Revista · Portafolio</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: "Inter", sans-serif;
-            background: #ffffff;
-            color: #111;
-        }
-        header {
-            padding: 60px 30px;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        header p {
-            font-size: 1.1rem;
-            color: #555;
-        }
-        .hero-img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-top: 40px;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 30px;
-        }
-        .section-title {
-            margin-top: 60px;
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #000;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        .article-list {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-top: 25px;
-        }
-        .article-card {
-            padding: 25px;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            transition: 0.25s ease;
-            cursor: pointer;
-        }
-        .article-card:hover {
-            border-color: #111;
-            transform: translateY(-3px);
-        }
-        .article-card h3 {
-            font-size: 1.3rem;
-            margin: 0;
-            font-weight: 600;
-        }
-        .article-card p {
-            margin: 6px 0 0;
-            color: #555;
-        }
-        footer {
-            text-align: center;
-            padding: 40px;
-            margin-top: 60px;
-            color: #777;
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title><!--NOMBRE_SITIO--> · Revista abierta</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #ffffff;
+    --text: #0b0b0b;
+    --muted: #6b6b6b;
+    --accent: #e23b6b;
+    --maxw: 1200px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
+  a{color:inherit;text-decoration:none}
+  header{max-width:var(--maxw);margin:32px auto 8px;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;gap:18px;align-items:center}
+  .logo{width:64px;height:64px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#111;color:#fff;font-weight:700;font-family:Playfair Display,serif}
+  .title{line-height:1}
+  .title h1{font-family:Playfair Display,serif;margin:0;font-size:1.25rem;letter-spacing:0.01em}
+  .title p{margin:0;color:var(--muted);font-size:0.9rem}
+
+  /* navegación de categorías */
+  nav{max-width:var(--maxw);margin:18px auto;padding:0 20px}
+  .cats{display:flex;gap:12px;flex-wrap:wrap}
+  .cat{padding:8px 12px;border-radius:999px;border:1px solid #eee;font-size:0.9rem;color:var(--muted);cursor:pointer}
+  .cat.active{border-color:var(--accent);color:var(--accent);font-weight:600}
+
+  /* layout principal */
+  main{max-width:var(--maxw);margin:24px auto;padding:0 20px;display:grid;grid-template-columns:1fr 320px;gap:34px}
+
+  /* columna de artículos: revista grid */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #eee;display:flex;flex-direction:column;min-height:220px;transition:transform .28s,box-shadow .28s}
+  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(10,10,10,0.06)}
+  .card .thumb{height:180px;background:#ddd;background-size:cover;background-position:center}
+  .card .meta{padding:18px}
+  .kicker{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.09em}
+  .card h3{margin:10px 0 6px;font-size:1.05rem}
+  .excerpt{color:var(--muted);font-size:0.95rem}
+
+  /* columna derecha: destacados y menú tipo archivo */
+  aside{position:relative}
+  .featured{background:#f9f9f9;border-radius:12px;padding:14px;border:1px solid #eee}
+  .featured h4{margin:6px 0 12px}
+  .mini{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+  .mini .mthumb{width:64px;height:54px;background:#ccc;border-radius:6px;background-size:cover;background-position:center}
+  .mini .mtitle{font-size:0.95rem}
+  .menu-sect{margin-top:22px}
+  .menu-sect h5{margin:0 0 10px}
+  .bycat{display:flex;flex-direction:column;gap:8px}
+  .bycat a{padding:8px;border-radius:8px;border:1px solid #f0f0f0}
+
+  /* featured large */
+  .hero{display:grid;grid-template-columns:1fr;gap:18px;margin:0 0 18px}
+  .hero .big{height:420px;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;border:1px solid #eee}
+  .overlay{padding:22px;background:linear-gradient(180deg,transparent 60%, rgba(0,0,0,0.45));color:#fff;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+  .overlay h2{margin:0;font-size:2rem;font-family:Playfair Display,serif}
+
+  /* article moods: cada card puede tener una clase que modifique colores */
+  .mood-raw .thumb{filter:grayscale(10%) sepia(8%)}
+  .mood-satiric .thumb{filter:hue-rotate(-10deg) saturate(1.25)}
+  .mood-nocturne .thumb{filter:brightness(.7) contrast(1.05)}
+  .mood-ethereal .thumb{filter:contrast(.95) saturate(.7) blur(0.2px)}
+
+  /* responsive */
+  @media (max-width:980px){main{grid-template-columns:1fr} .grid{grid-template-columns:1fr} aside{order:2}}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Mi Revista</h1>
-        <p>Artículos, ideas, reflexiones y críticas · Un espacio personal</p>
-        <img src="FOTO_PRINCIPAL.jpg" class="hero-img" alt="Imagen principal" />
-    </header>
+<header>
+  <div class="brand">
+    <div class="logo">M</div>
+    <div class="title">
+      <h1><!--NOMBRE_SITIO--></h1>
+      <p><!--SUBTITULO: espacio para ensayos, criticas y absurdo--></p>
+    </div>
+  </div>
+  <div class="actions">
+    <!-- espacio para buscar, redes, suscripcion -->
+  </div>
+</header>
 
-    <div class="container">
-        <h2 class="section-title">Categorías</h2>
-        <ul>
-            <li>Filosofía</li>
-            <li>Sociedad</li>
-            <li>Cultura</li>
-            <li>Opinión</li>
-        </ul>
+<nav>
+  <div class="cats" id="cats">
+    <!-- categorías se generan en JS -->
+  </div>
+</nav>
 
-        <h2 class="section-title">Últimos artículos</h2>
-        <div class="article-list">
-            <div class="article-card">
-                <h3>Título del Artículo</h3>
-                <p>Descripción corta del artículo. Este resumen se puede personalizar.</p>
-            </div>
-            <div class="article-card">
-                <h3>Otro Artículo Interesante</h3>
-                <p>Una breve frase que introduce el ambiente del artículo.</p>
-            </div>
+<main>
+  <section>
+    <div class="hero">
+      <a href="#" class="big" style="background-image:url('/mnt/data/76edcc88-f92e-4ca4-8347-1c6469113d97.png')">
+        <div class="overlay">
+          <div class="kicker">Destacado</div>
+          <h2>Artículo principal: Título que atraviesa la portada</h2>
         </div>
+      </a>
     </div>
 
-    <footer>
-        © 2025 · Mi Revista · Todos los derechos reservados
-    </footer>
+    <div class="grid" id="grid">
+      <!-- tarjetas de artículos (ejemplos) -->
+
+      <article class="card mood-nocturne" data-cats="filosofia,ensayos">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1526318472351-c75fcf0709c2?auto=format&fit=crop&w=1200&q=60')"></div>
+        <div class="meta">
+          <div class="kicker">Filosofía</div>
+          <h3>La pequeña desobediencia</h3>
+          <p class="excerpt">Un ensayo que incomoda y ablanda la mirada al mismo tiempo.</p>
+        </div>
+      </article>
+
+      <article class="card mood-ethereal" data-cats="cultura,arte">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=60')"></div>
+        <div class="meta">
+          <div class="kicker">Arte · Cultura</div>
+          <h3>Sobre la estética de lo quebrado</h3>
+          <p class="excerpt">Relato visual y crítica breve sobre obras que se rehacen.</p>
+        </div>
+      </article>
+
+      <article class="card mood-satiric" data-cats="politica,critica social,satira">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1200&q=60')"></div>
+        <div class="meta">
+          <div class="kicker">Crítica social</div>
+          <h3>Manual mínimo del funcionario distraído</h3>
+          <p class="excerpt">Sátira mordaz sobre los rituales de oficina y poder.</p>
+        </div>
+      </article>
+
+      <article class="card mood-raw" data-cats="cine,musica,criticas">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=60')"></div>
+        <div class="meta">
+          <div class="kicker">Cine · Críticas</div>
+          <h3>El sonido fuera de cuadro</h3>
+          <p class="excerpt">Crítica al cine emergente que apuesta por la textura sonora.</p>
+        </div>
+      </article>
+
+      <!-- más tarjetas: el sistema permite agregar muchas más -->
+    </div>
+  </section>
+
+  <aside>
+    <div class="featured">
+      <h4>Artículos relevantes</h4>
+      <div class="mini">
+        <div class="mthumb" style="background-image:url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=60')"></div>
+        <div>
+          <div class="kicker">Opinión</div>
+          <div class="mtitle">Por qué más creatividad es menos producción</div>
+        </div>
+      </div>
+      <div class="mini">
+        <div class="mthumb" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60')"></div>
+        <div>
+          <div class="kicker">Moda</div>
+          <div class="mtitle">Tendencias rotas: el reciclaje como lujo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-sect">
+      <h5>Explorar por categoría</h5>
+      <div class="bycat" id="bycat">
+        <!-- listado de categorias -->
+      </div>
+    </div>
+  </aside>
+</main>
+
+<footer style="max-width:var(--maxw);margin:40px auto;padding:20px">© <!--AÑO--> · <!--NOMBRE_SITIO--> · Todos los derechos reservados</footer>
+
+<script>
+  const CATS = ["filosofia","critica social","politica","cultura","opinion","ensayos","relatos","cine","musica","arte","moda","emergente","criticas","temas absurdos","satira"];
+  const catsEl = document.getElementById('cats');
+  const bycatEl = document.getElementById('bycat');
+  CATS.forEach(c=>{
+    const b = document.createElement('button');
+    b.className='cat'; b.textContent = c;
+    b.onclick = ()=>{filterByCat(c);document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));b.classList.add('active')}
+    catsEl.appendChild(b);
+
+    const link = document.createElement('a'); link.href='#'; link.textContent=c; link.onclick=(e)=>{e.preventDefault();filterByCat(c)};
+    link.className='cat'; link.style.display='inline-block'; link.style.padding='6px 8px'
+    bycatEl.appendChild(link);
+  })
+
+  function filterByCat(cat){
+    const cards = document.querySelectorAll('#grid article');
+    cards.forEach(card=>{
+      const cats = card.dataset.cats.split(',').map(x=>x.trim());
+      if(cats.includes(cat)) card.style.display='flex'; else card.style.display='none';
+    })
+    // si no hay resultados, mostrar todos
+    const any = Array.from(document.querySelectorAll('#grid article')).some(a=>a.style.display!=='none');
+    if(!any) document.querySelectorAll('#grid article').forEach(a=>a.style.display='flex');
+  }
+
+  // ejemplo: marcar la primera categoría como activa
+  document.querySelectorAll('.cat')[0].classList.add('active');
+
+</script>
+
+<!--
+  INSTRUCCIONES RÁPIDAS para añadir artículos personales:
+  - Copia una tarjeta <article class="card mood-..." data-cats="categoria1,categoria2"> ... </article>
+  - Modifica el estilo inline de .thumb con una URL propia.
+  - Cambia kicker, h3 y excerpt.
+  - Para crear páginas individuales: crea 'articulos/nombre-archivo.html' con tu contenido y enlázalo poniendo <a href="/articulos/nombre-archivo.html"> dentro de la tarjeta.
+  - Puedes crear diferentes "mood-": mood-nocturne, mood-ethereal, mood-satiric, mood-raw
+  - El hero usa la imagen subida: /mnt/data/76edcc88-f92e-4ca4-8347-1c6469113d97.png (reemplaza por tus fotos)
+-->
+
 </body>
 </html>
